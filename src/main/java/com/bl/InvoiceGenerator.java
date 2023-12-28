@@ -12,4 +12,12 @@ public class InvoiceGenerator {
         }
         return totalFare;
     }
+
+    public double calculateFare(Ride[] ride){
+        double totolFare =0;
+        for(Ride r : ride){
+            totolFare += this.calculateFare(r.getDistance(),r.getTime());
+        }
+        return totolFare;
+    }
 }
