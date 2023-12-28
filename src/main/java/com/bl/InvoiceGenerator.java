@@ -13,11 +13,20 @@ public class InvoiceGenerator {
         return totalFare;
     }
 
-    public double calculateFare(Ride[] ride){
-        double totolFare =0;
-        for(Ride r : ride){
-            totolFare += this.calculateFare(r.getDistance(),r.getTime());
+    public InvoiceSummary calculateFare(Ride[] rides) {
+        double totalFare = 0;
+        int numberOfRides = 0;
+        InvoiceSummary invoiceSummary = new InvoiceSummary();
+
+        for (Ride ride : rides) {
+            totalFare += this.calculateFare(ride.getDistance(), ride.getTime());
+            numberOfRides++;
         }
-        return totolFare;
+
+        invoiceSummary.setTotalNumberOfRides(numberOfRides);
+        invoiceSummary.setTotalFare(totalFare);
+        invoiceSummary.calculateAverageFare();
+
+        return invoiceSummary;
     }
 }
